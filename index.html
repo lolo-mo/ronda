@@ -104,118 +104,171 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="Ronda" startnode="2" creator="Twine" creator-version="2.12.0" format="SugarCube" format-version="2.37.3" ifid="A4B7C91D-89E1-4D3B-98A6-8F12C3456789" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* Dark, humid atmospheric backdrop */
+	<tw-storydata name="Ronda" startnode="2" creator="Twine" creator-version="2.12.0" format="SugarCube" format-version="2.37.3" ifid="A4B7C91D-89E1-4D3B-98A6-8F12C3456789" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* Import Gritty CRT & Retro Monospace Fonts */
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ========================================== */
+/*     CRT SCANLINE ATMOSPHERE & BACKDROP    */
+/* ========================================== */
 body {
-  background-color: #0b0d12;
-  color: #e0e6ed;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #080a0c;
+  /* Subtly emulates CRT scanlines and dark ambient glow */
+  background-image: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 3px, 6px 100%;
+  background-attachment: fixed;
+  color: #c4ceb8;
+  font-family: 'Courier Prime', Courier, monospace;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-/* Passage container styling */
+/* Main Story Card Scaffolding */
 #passages {
   max-width: 720px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 30px auto;
+  padding: 28px;
+  background-color: #0f1216;
+  border: 2px solid #2a3427;
+  border-radius: 2px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(42, 52, 39, 0.2);
 }
 
-/* Neon Green / Barangay Tanod Accent for Links */
+/* Text Formatting Highlights */
+b, strong {
+  color: #ffb703;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* ========================================== */
+/*         RETRO TERMINAL CHOICE LINKS        */
+/* ========================================== */
 a {
-  color: #39ff14;
+  color: #43d936;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.05em;
   text-decoration: none;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
-  border-bottom: 1px dashed #39ff14;
+  display: block;
+  margin: 10px 0;
+  padding: 6px 12px;
+  background-color: #141a13;
+  border: 1px solid #285423;
+  border-left: 6px solid #43d936;
+  transition: all 0.15s ease-in-out;
 }
 
 a:hover {
-  color: #ffffff;
-  background-color: #39ff14;
-  color: #000000;
-  border-bottom: 1px solid #39ff14;
-  box-shadow: 0 0 10px #39ff14;
-  padding: 2px 4px;
-  border-radius: 3px;
+  color: #080a0c;
+  background-color: #43d936;
+  border-color: #43d936;
+  padding-left: 18px;
+  box-shadow: 0 0 12px rgba(67, 217, 54, 0.5);
 }
 
-/* Sidebar styling adjustment */
+/* Add a terminal prompt character before links */
+a::before {
+  content: "> ";
+  font-weight: bold;
+}
+
+a:hover::before {
+  content: ">> ";
+}
+
+/* ========================================== */
+/*            SIDEBAR & TOGGLES               */
+/* ========================================== */
 #ui-bar {
-  background-color: #12151c;
-  border-right: 2px solid #222834;
+  background-color: #0a0d10;
+  border-right: 2px solid #1a2219;
 }
 
 #ui-bar-toggle {
-  color: #39ff14;
-  border: 1px solid #39ff14;
+  color: #43d936;
+  border: 1px solid #285423;
+  background: #141a13;
+  font-family: 'Share Tech Mono', monospace;
 }
 
-/* Dashboard UI box override for displayStats */
+#ui-bar-toggle:hover {
+  background: #43d936;
+  color: #000;
+}
+
+/* ========================================== */
+/*          DASHBOARD & STATS UI              */
+/* ========================================== */
+/* Target displayStats UI container */
 div[style*="background-color:#111"] {
-  background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
-  border-left: 4px solid #39ff14 !important;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  color: #c9d1d9 !important;
+  background-color: #070a08 !important;
+  border: 1px double #334d2f !important;
+  border-top: 3px solid #43d936 !important;
+  border-radius: 0px !important;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9) !important;
+  color: #72e067 !important;
+  font-family: 'VT323', monospace !important;
+  font-size: 1.35em !important;
+  letter-spacing: 1px;
+  padding: 12px 16px !important;
+  margin-bottom: 25px !important;
 }
 
-/* Highlight key interactive elements */
-b, strong {
-  color: #f0e68c;
-}
-
-
-/*===============*/
-/*   MECHANICS   */
-/*===============*/
-/* Mechanics Card Styling */
+/* ========================================== */
+/*             MECHANICS & CARDS              */
+/* ========================================== */
 .mechanics-container {
-  max-width: 680px;
-  margin: 0 auto;
+  max-width: 100%;
 }
 
 .section-title {
-  color: #39ff14;
+  color: #43d936;
+  font-family: 'VT323', monospace;
+  font-size: 1.8em;
   letter-spacing: 2px;
-  border-bottom: 2px solid #39ff14;
-  padding-bottom: 5px;
+  text-transform: uppercase;
+  border-bottom: 2px dashed #285423;
+  padding-bottom: 4px;
   margin-bottom: 20px;
 }
 
 .mechanic-card {
-  background: #12151c;
-  border: 1px solid #222834;
-  border-left: 4px solid #39ff14;
-  border-radius: 6px;
-  padding: 12px 16px;
-  margin-bottom: 15px;
+  background: #12171c;
+  border: 1px solid #222c36;
+  border-left: 4px solid #43d936;
+  border-radius: 0;
+  padding: 14px 18px;
+  margin-bottom: 16px;
 }
 
 .danger-card {
-  border-left-color: #ff3333;
+  border-left-color: #e63946 !important;
+  background: #181214;
 }
 
 .card-header {
+  font-family: 'Share Tech Mono', monospace;
   font-size: 1.05em;
   color: #ffffff;
   margin-bottom: 6px;
+  text-transform: uppercase;
 }
 
 .card-body {
-  font-size: 0.95em;
-  color: #c9d1d9;
+  font-size: 0.9em;
+  color: #a2acb8;
 }
 
 .warning-text {
-  color: #ff3333;
+  color: #e63946;
+  font-family: 'Share Tech Mono', monospace;
   font-weight: bold;
 }
 
 .rest-list {
   margin-top: 8px;
   margin-bottom: 0;
-  padding-left: 20px;
+  padding-left: 18px;
 }
 
 .rest-list li {
